@@ -1,0 +1,42 @@
+.form-control{
+    padding: 20px;
+    font-family: system-ui;
+    font-weight: bold;
+}
+
+.form-control label{
+    float: left;
+    width: 20%;
+ }
+
+.form-control input{
+   float: left;
+   width: 70%;
+}
+
+.form-control textarea{
+    float: left;
+    width: 70%;
+}
+
+.form-control button{
+    float: left;
+    width: 20%;
+}
+
+.form-control--invalid input{
+    border: 1px solid red;
+}
+
+.form-control--invalid textarea{
+    border: 1px solid red;
+}
+
+.form-control--invalid p{
+    color: red;
+}
+
+p{
+    display: inline-block;
+    margin-left: 20%;
+}

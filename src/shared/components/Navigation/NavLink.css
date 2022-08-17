@@ -1,0 +1,41 @@
+.nav-links{
+    text-decoration: none;
+    list-style: none;
+}
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem;
+}
+
+.nav-links a:hover,
+.nav-links a:active,
+.nav-links a.active{
+    background: #f8df00;
+    border-color: #292929;
+    color: #292929;
+}
+
+
+
+#list-item{
+    display: inline-block;
+    margin: 1.6rem;
+}
+#list-item:hover{
+    background-color: yellowgreen;   
+}
+
+.nav-links button{
+    border:  1px solid black;
+    color: white;
+    background: transparent;
+    padding: 0.5rem;
+}
+
+.nav-links button:hover,
+.nav-links button:active{
+    background-color: yellowgreen;
+    color: black;
+}
+

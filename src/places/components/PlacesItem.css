@@ -1,0 +1,18 @@
+.places-item{
+    width:50%;
+    margin: 1rem;
+    min-width: 17.5rem;
+    align-items: center;
+    text-align: center;
+}
+.places-item__info{
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: system-ui;
+}
+
+.places-item__info img{
+    overflow: hidden;
+}
+ 

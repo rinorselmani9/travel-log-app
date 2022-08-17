@@ -1,0 +1,36 @@
+.href{
+    border: 1px solid red;
+    background-color: #E9967A;
+    padding: 8px 15px 8px 15px;
+    margin: 5px;
+    font-family: system-ui;
+    font-weight: bold;
+}
+.link{
+    border: 1px solid red;
+    background-color: white;
+    padding: 8px 15px 8px 15px;
+    margin: 5px;
+    font-family: system-ui;
+    font-weight: bold;
+}
+.danger{
+    border: 1px solid red;
+    background-color: red;
+    padding: 8px 15px 8px 15px;
+    margin: 5px;
+    font-family: system-ui;
+    color: white;
+    font-weight: bold;
+}
+
+.my-button{
+    border: 1px solid gray;
+    background-color: gray;
+    width: 20%;
+    padding: 8px 15px 8px 15px;
+    font-family: system-ui;
+    color: white;
+    margin-left: 40%;
+    font-weight: bold;
+}

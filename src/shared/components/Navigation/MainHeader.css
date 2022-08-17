@@ -1,0 +1,25 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    
+}
+.main-header{
+    background-color: red;
+    height: 70px;
+    color: white;
+}
+h1{
+    margin: 0;
+    margin-top: 15px;
+}
+.logo{
+    display: inline-block;
+    font-family: system-ui;
+    margin-left: 10px;
+}
+.logo:hover{
+    color: black;
+}
+.navigation{
+    float: right;
+}
