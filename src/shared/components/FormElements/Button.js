@@ -10,8 +10,8 @@ const Button = props => {
     }
     if(props.to){
         return(
-        <Link to={`{}`}>
-            <button className='link'>Link</button>
+        <Link to={props.to}>
+            <button className='link'>Edit</button>
         </Link>
         )
     }

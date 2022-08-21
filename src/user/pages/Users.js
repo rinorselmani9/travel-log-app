@@ -6,17 +6,17 @@ const Users = () => {
     const userData = [
         {
             id:'u1',
-            firstName:'Rinor',
-            lastName:'Selmani',
-            places:2,
-            image:'https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg'
+            firstName:'Filan ',
+            lastName:'Fisteku',
+            places:3,
+            image:'https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg'
         },
         {
             id:'u2',
-            firstName:'Rinor',
-            lastName:'Selmani',
-            places:1,
-            image:'https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg'
+            firstName:'Filane',
+            lastName:'Fisteku',
+            places:2,
+            image:'https://www.terrainhopperusa.com/wp-content/uploads/2019/01/avatar-woman.png'
         }
     ]
 

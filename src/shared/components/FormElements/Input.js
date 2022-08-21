@@ -23,7 +23,6 @@ const inputReducer = (state, action) => {
     }
 }
 
-
 const Input = props  => {
 
     const [ inputState,dispatch ] = useReducer(inputReducer,{

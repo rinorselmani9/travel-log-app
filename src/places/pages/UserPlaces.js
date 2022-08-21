@@ -6,28 +6,28 @@ const UserPlaces = props => {
 
   const dummy_places = [
     {
-        id:'p1',
-        title:'New Born',
-        description:'Kosova newest country in the world',
-        imageUrl:'https://pbs.twimg.com/media/EwCNjEQWQAQQMr9.jpg',
-        address:'Pristina',
-        location:{
-            lat:45.333,
-            lng:-73.09,
+        id: 'p1',
+        title: 'Empire State',
+        description: 'One of the most famous sky scrapers in the world!',
+        imageUrl:'https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg',
+        address: '29 w 34th St, New York, NY 10001',
+        location: {
+            lat: 40.74844405,
+            lng: -73.9878584
         },
-        creator:'u1'
+        creator: 'u1'
     },
     {
-        id:'p2',
-        title:'Germia National Park',
-        description:'Kosova\'s National Park',
-        imageUrl:'http://photos.wikimapia.org/p/00/01/49/52/35_big.jpg',
-        address:'Pristina',
-        location:{
-            lat:49.333,
-            lng:-80.09,
+        id: 'p2',
+        title: 'Hamburger Aba',
+        description: 'One of the most famous burger shops in the world!',
+        imageUrl:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Hamburger_Aba_Prishtina.jpg/1600px-Hamburger_Aba_Prishtina.jpg?20181001133614',
+        address: 'Prishtine, 10000',
+        location: {
+            lat: 42.667542,
+            lng: 21.166191
         },
-        creator:'u1'
+        creator: 'u1'
     },
     {
         id:'p3',

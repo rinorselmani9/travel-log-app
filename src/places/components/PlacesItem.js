@@ -14,7 +14,7 @@ const PlacesItem = props => {
 
                 <h4>{props.description}</h4>
                 <div>
-                  <Button to></Button>
+                  <Button to = {`/places/${props.id}`}></Button>
                   <Button href></Button>
                   <Button danger>Delete</Button>
                 </div>

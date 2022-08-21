@@ -26,7 +26,7 @@ const formReducer = ( state, action ) => {
             [action.inputId]:{value:action.value, isValid:action.isValid}
         },
         isValid:formIsValid
-    }    
+    }   
     default:
         return state
   }
