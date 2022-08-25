@@ -9,15 +9,27 @@ import Button from '../../shared/components/FormElements/Button'
 
 const formReducer = ( state, action ) => {
     switch(action.type){
-      case 'SET_DATA':
-          return {
-            inputs:action.inputs,
-            isValid:action.isValid
-        } 
+      case 'INPUT_CHANGE':
+          let formIsValid = true;
+          for(const inputId in state.inputs){
+              if(inputId === action.inputId){
+                  formIsValid = formIsValid && action.isValid
+              }else{
+                  formIsValid = formIsValid && state.inputs[inputId].isValid
+              }
+          }
+      return{
+          ...state,
+          inputs:{
+              ...state.inputs,
+              [action.inputId]:{value:action.value, isValid:action.isValid}
+          },
+          isValid:formIsValid
+      }   
       default:
           return state
     }
-}
+  }
   
 const UpdatePlaces = () => {
 
@@ -66,21 +78,19 @@ const UpdatePlaces = () => {
     const [formState, dispatch] = useReducer (formReducer,{
         inputs:{
             title:{
-                value: placeToEdit.title,
-                isValid:true
+                value:placeToEdit.title,
+                isValid: true
             },
             description:{
                 value:placeToEdit.description,
                 isValid:true
             }
         },
-        isValid:false
+        isValid:true
     })
-    console.log(formState);
-    // setTitle(placeToEdit.title);
     const inputHandler = useCallback((id,value,isValid) => {
         dispatch({
-            type:'SET_DATA',
+            type:"INPUT_CHANGE",
             value:value,
             isValid:isValid,
             inputId:id
@@ -102,6 +112,8 @@ const UpdatePlaces = () => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid title!"
             onInput={inputHandler}
+            value={formState.inputs.title.value}
+            isValid={formState.inputs.title.isValid}
         />
         <Input
             id="description"
@@ -110,6 +122,8 @@ const UpdatePlaces = () => {
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a valid description (at least 5 characters)!"
             onInput={inputHandler}
+            value={formState.inputs.description.value}
+            isValid={formState.inputs.description.isValid}
         />
    
         <Button type="submit" disabled={!formState.isValid}>

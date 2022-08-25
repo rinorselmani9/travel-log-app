@@ -1,0 +1,25 @@
+.login-div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px;
+}
+.login-card{
+    width: 30%;
+    font-family: system-ui;
+    font-weight: bold;
+    background-color: #FFA07A;
+}
+.login-card label{
+    float: none;
+}
+.login-card input{
+    float: none;
+}
+.login-card button {
+    padding: 10px;
+    text-align: center;
+    float: none;
+    margin: 0;
+    width: auto;
+}

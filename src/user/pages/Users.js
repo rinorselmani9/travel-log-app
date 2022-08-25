@@ -8,14 +8,14 @@ const Users = () => {
             id:'u1',
             firstName:'Filan ',
             lastName:'Fisteku',
-            places:3,
+            places:2,
             image:'https://cdn1.vectorstock.com/i/1000x1000/23/70/man-avatar-icon-flat-vector-19152370.jpg'
         },
         {
             id:'u2',
             firstName:'Filane',
             lastName:'Fisteku',
-            places:2,
+            places:1,
             image:'https://www.terrainhopperusa.com/wp-content/uploads/2019/01/avatar-woman.png'
         }
     ]

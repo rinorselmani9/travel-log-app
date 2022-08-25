@@ -3,6 +3,8 @@ import PlacesItem from './PlacesItem'
 import './PlacesList.css'
 
 const PlacesList = props => {
+
+    
   return (
         <div className='places-list'>
             {props.items.map((places)=>

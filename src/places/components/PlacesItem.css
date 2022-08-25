@@ -15,4 +15,21 @@
 .places-item__info img{
     overflow: hidden;
 }
+.places-item-delete{
+    display: block;
+    width: 50%;
+    margin: 1rem;
+    align-items: center;
+    text-align: center;
+    background-color: #FFA07A;
+    font-family: system-ui;
+}
+.places-item-delete button {
+    padding: 10px;
+    font-family: system-ui;
+    font-weight: bold;
+    margin: 5px;
+    border-radius: 15px;
+}
+
  

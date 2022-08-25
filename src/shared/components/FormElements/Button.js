@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import './Button.css'
 
 const Button = props => {
+    
     if(props.href){
         return (
                 <button className='href'>My HREF Button</button>
@@ -17,14 +18,14 @@ const Button = props => {
     }
     if(props.danger){
         return(
-            <button className='danger'>Delete</button>
+            <button className='danger' onClick={props.onClick}>{props.children}</button>
         )
     }
     
 
     return (
         <>
-            <button className='my-button'>{props.children}</button>
+            <button className='my-button' onClick={props.onClick}>{props.children}</button>
         </>
     )
  
