@@ -63,10 +63,35 @@ const Login = props => {
         })
     },[])    
 
-    const placeSubmitHandler = event => {
+    const placeSubmitHandler = async(event) => {
         event.preventDefault()
-        auth.login();
-        navigate('/')
+        if(auth.isLoggedIn){
+        }else{
+            try{
+                const response = await fetch('http://localhost:3000/api/users/login',{
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        email:formState.inputs.email.value,
+                        password:formState.inputs.password.value
+                    })
+                 
+                })
+                const responseData = await response.json()
+                if(!response.ok){
+                    throw new Error('Invalid credencials')
+                }
+                auth.login();
+                navigate('/')
+            }catch(err){
+                console.log(err);
+            }
+        }
+        
+
+
     }
 
   return (

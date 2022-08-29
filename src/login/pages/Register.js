@@ -42,11 +42,7 @@ const Register = props => {
 
     const [formState, dispatch] = useReducer (formReducer,{
         inputs:{
-            firstname:{
-                value:'',
-                isValid: false
-            },
-            lastname:{
+            name:{
                 value:'',
                 isValid:false
             },
@@ -70,9 +66,28 @@ const Register = props => {
         })
     },[])    
 
-    const placeSubmitHandler = event => {
+    const placeSubmitHandler = async(event) => {
         event.preventDefault()
-        console.log(formState.inputs)
+        if(auth.isLoggedIn){
+        }else{
+            try{
+                const response = await fetch('http://localhost:3000/api/users/register',{
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        name:formState.inputs.name.value,
+                        email:formState.inputs.email.value,
+                        password:formState.inputs.password.value
+                    })
+                })
+                const responseData = await response.json()
+                console.log(responseData);
+            }catch(err){
+                console.log(err);
+            }
+        }
         auth.login();
         navigate('/')
     }
@@ -80,20 +95,12 @@ const Register = props => {
     <div className='login-div'>
     <Card className="login-card">
        <form onSubmit={placeSubmitHandler}>
+            
             <Input
-                id="firstname"
+                id="name"
                 element="input"
                 type="text"
-                label="First Name"
-                validators={[VALIDATOR_REQUIRE()]}
-                errorText="Please enter a valid email!"
-                onInput={inputHandler}
-            />
-            <Input
-                id="lastname"
-                element="input"
-                type="text"
-                label="Last Name"
+                label="Name"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText="Please enter a valid email!"
                 onInput={inputHandler}
