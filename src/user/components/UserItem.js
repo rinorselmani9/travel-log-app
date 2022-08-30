@@ -15,7 +15,7 @@ const UserItem = props => {
           <Avatar img={props.img}/>
 
           <div className='user-item__info'>
-            <h2>{props.fName} {props.lName}</h2>
+            <h2>{props.name}</h2>
             <h3>{props.places} Places</h3>
 
           </div>

@@ -3,16 +3,15 @@ import UserItem from './UserItem'
 import './UserList.css'
 
 const UserList = props => {
-
+  
   return (
     <div className='user-list'>
         {props.items.map((user)=>
             <UserItem
                 key={user.id}
                 id={user.id}
-                fName={user.firstName}
-                lName={user.lastName}
-                places={user.places}
+                name={user.name}
+                places={user.places.length}
                 img={user.image}
             />
         )}

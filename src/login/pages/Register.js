@@ -82,14 +82,15 @@ const Register = props => {
                         password:formState.inputs.password.value
                     })
                 })
-                const responseData = await response.json()
-                console.log(responseData);
+                if(!response.ok){
+                    throw new Error('Invalid credentials')
+                }
+                auth.login();
+                navigate('/')
             }catch(err){
                 console.log(err);
             }
         }
-        auth.login();
-        navigate('/')
     }
   return (
     <div className='login-div'>

@@ -6,16 +6,15 @@ const PlacesList = props => {
 
     
   return (
-        <div className='places-list'>
+        <div className='places-list' >
             {props.items.map((places)=>
                 <PlacesItem
-                    key={places.id}
-                    id={places.id}
+                    key={places._id}
+                    id={places._id}
                     title={places.title}
                     description={places.description}
-                    image={places.imageUrl}
+                    image={places.image}
                     address={places.address}
-                    location={places.location}
                     creator={places.creator}
                 />
             )}
