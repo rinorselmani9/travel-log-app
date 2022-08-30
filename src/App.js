@@ -9,10 +9,18 @@ import UpdatePlaces from './places/pages/UpdatePlaces'
 import Login from './login/pages/Login'
 import Register from './login/pages/Register'
 import { AuthContext } from './shared/context/authContext'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 function App() {
+
   let [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      setIsLoggedIn(true)
+    }
+  },[])
+  
+  
   const [userId, setUserId] = useState()
 
   const login = useCallback((userId) => {
@@ -20,8 +28,10 @@ function App() {
     setIsLoggedIn(true)
     setUserId(userId)
   }, [])
+
   const logout = useCallback(() => {
     setIsLoggedIn(false)
+    localStorage.removeItem('token')
   }, [])
 
   let routes
@@ -34,7 +44,7 @@ function App() {
         <Route path='/places' element={<Places />} />
         <Route path='/newplaces' element={<NewPlaces />} />
         <Route path='/places/:placesId' element={<UpdatePlaces />} />
-        <Route path='/login' element={<Login />} />
+        {/* <Route path='/login' element={<Login />} /> */}
         <Route path='/register' element={<Register />} />
       </Routes>
     )
@@ -44,7 +54,6 @@ function App() {
         <Route path='/' element={<Users />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
     )
   }

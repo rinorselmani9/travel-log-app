@@ -1,8 +1,10 @@
-import React, { useReducer, useCallback, useState, useEffect } from 'react'
+import React, { useReducer, useCallback, useContext, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/utils/validators'
 import Input from '../../shared/components/FormElements/Input'
 import Button from '../../shared/components/FormElements/Button'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../shared/context/authContext'
 
 const formReducer = (state, action) => {
   switch (action.type) {
@@ -23,69 +25,34 @@ const formReducer = (state, action) => {
         },
         isValid: formIsValid,
       }
+    case 'SET_DATA':
+      return {
+        inputs: action.inputs,
+        isValid: action.isValid,
+      }
     default:
       return state
   }
 }
 
 const UpdatePlaces = () => {
-  const dummy_places = [
-    {
-      id: 'p1',
-      title: 'Empire State',
-      description: 'One of the most famous sky scrapers in the world!',
-      imageUrl:
-        'https://www.history.com/.image/t_share/MTU3ODc4NjA0ODYzOTA3NTUx/image-placeholder-title.jpg',
-      address: '29 w 34th St, New York, NY 10001',
-      location: {
-        lat: 40.74844405,
-        lng: -73.9878584,
-      },
-      creator: 'u1',
-    },
-    {
-      id: 'p2',
-      title: 'Hamburger Aba',
-      description: 'One of the most famous burger shops in the world!',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Hamburger_Aba_Prishtina.jpg/1600px-Hamburger_Aba_Prishtina.jpg?20181001133614',
-      address: 'Prishtine, 10000',
-      location: {
-        lat: 42.667542,
-        lng: 21.166191,
-      },
-      creator: 'u1',
-    },
-    {
-      id: 'p3',
-      title: 'New Born',
-      description: 'Kosova newest country in the world',
-      imageUrl: 'https://pbs.twimg.com/media/EwCNjEQWQAQQMr9.jpg',
-      address: 'Pristina',
-      location: {
-        lat: 45.333,
-        lng: -73.09,
-      },
-      creator: 'u2',
-    },
-  ]
-
-  const placeId = useParams().placesId
-  const placeToEdit = dummy_places.find((place) => place.id === placeId)
-
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
       title: {
-        value: placeToEdit.title,
-        isValid: true,
+        value: '',
+        isValid: false,
       },
       description: {
-        value: placeToEdit.description,
-        isValid: true,
+        value: '',
+        isValid: false,
       },
     },
-    isValid: true,
+    isValid: false,
   })
+  const auth = useContext(AuthContext)
+  const navigate = useNavigate()
+  const placeId = useParams().placesId
+
   const inputHandler = useCallback((id, value, isValid) => {
     dispatch({
       type: 'INPUT_CHANGE',
@@ -95,29 +62,63 @@ const UpdatePlaces = () => {
     })
   }, [])
 
-  const placeSubmitHandler = (event) => {
+  const setFormData = useCallback((inputData, formValidaty) => {
+    dispatch({
+      type: 'SET_DATA',
+      inputs: inputData,
+      formIsValid: formValidaty,
+    })
+  })
+  useEffect(() => {
+    const fetchPlace = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/places/${placeId}`)
+        const responseData = await response.json()
+        
+        setFormData(
+          {
+            title: {
+              value: response.place.title,
+              isValid: true,
+            },
+            description: {
+              value: response.place.description,
+              isValid: true,
+            },
+          },
+          true
+        )
+        console.log(responseData)
+      } catch (err) {
+        throw new Error(err.message)
+      }
+    }
+
+    fetchPlace()
+  }, [ placeId, setFormData])
+
+  const placeSubmitHandler = async (event) => {
     event.preventDefault()
+    try {
+      const response = await fetch(`http://localhost:3000/api/places/update-place/${placeId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formState.inputs.title.value,
+          description: formState.inputs.description.value,
+        }),
+      })
+      const responseData = await response.json()
 
-    // useEffect(() => {
-    //   const sendRequest = async () => {
-    //     try {
-    //       const response = await fetch(`http://localhost:3000/api/places/update-place/${placeId}`)
-
-    //       const responseData = await response.json()
-
-    //       if (!response.ok) {
-    //         throw new Error(responseData.message)
-    //       }
-
-    //       setPlacesList(responseData.result)
-    //     } catch (err) {
-    //       throw new Error(err.message)
-    //     }
-    //   }
-    //   sendRequest()
-    // }, [])
-
-    console.log(formState.inputs)
+      if (!response.ok) {
+        throw new Error(responseData.message)
+      }
+      navigate(`/${auth.userId}/places`)
+    } catch (err) {
+      throw new Error(err.message)
+    }
   }
 
   return (

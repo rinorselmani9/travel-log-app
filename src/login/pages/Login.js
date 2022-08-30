@@ -78,6 +78,7 @@ const Login = (props) => {
           }),
         })
         const responseData = await response.json()
+        localStorage.setItem('token',responseData.message.token)
         if (!response.ok) {
           throw new Error('Invalid credencials')
         }

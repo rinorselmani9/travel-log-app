@@ -23,7 +23,7 @@ const UserPlaces = (props) => {
       }
     }
     sendRequest()
-  }, [])
+  }, [placesList])
 
   return <PlacesList items={placesList} />
 }
